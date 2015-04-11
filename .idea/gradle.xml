@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="distributionType" value="LOCAL" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleHome" value="C:\Program Files\Android\Android Studio\gradle\gradle-2.2.1" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/Application" />
+            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/autotakepic" />
+            <option value="$PROJECT_DIR$/baidulbs" />
+            <option value="$PROJECT_DIR$/camera" />
+            <option value="$PROJECT_DIR$/communication" />
+            <option value="$PROJECT_DIR$/filestoretosd" />
+            <option value="$PROJECT_DIR$/getgpspoint" />
+            <option value="$PROJECT_DIR$/mypolicy" />
+            <option value="$PROJECT_DIR$/readmessage" />
+            <option value="$PROJECT_DIR$/readphonestate" />
+            <option value="$PROJECT_DIR$/servicetest" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>
+

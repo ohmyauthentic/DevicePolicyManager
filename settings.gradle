@@ -1,0 +1,1 @@
+include ':app', ':Application', ':mypolicy', ':camera', ':autotakepic', ':filestoretosd', ':servicetest', ':communication', ':getgpspoint', ':readmessage', ':readphonestate', ':baidulbs'

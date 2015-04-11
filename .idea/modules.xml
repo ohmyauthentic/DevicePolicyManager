@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Application/Application.iml" filepath="$PROJECT_DIR$/Application/Application.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DevicePolicyManager.iml" filepath="$PROJECT_DIR$/DevicePolicyManager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/autotakepic/autotakepic.iml" filepath="$PROJECT_DIR$/autotakepic/autotakepic.iml" />
+      <module fileurl="file://$PROJECT_DIR$/baidulbs/baidulbs.iml" filepath="$PROJECT_DIR$/baidulbs/baidulbs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/camera/camera.iml" filepath="$PROJECT_DIR$/camera/camera.iml" />
+      <module fileurl="file://$PROJECT_DIR$/communication/communication.iml" filepath="$PROJECT_DIR$/communication/communication.iml" />
+      <module fileurl="file://$PROJECT_DIR$/filestoretosd/filestoretosd.iml" filepath="$PROJECT_DIR$/filestoretosd/filestoretosd.iml" />
+      <module fileurl="file://$PROJECT_DIR$/getgpspoint/getgpspoint.iml" filepath="$PROJECT_DIR$/getgpspoint/getgpspoint.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mypolicy/mypolicy.iml" filepath="$PROJECT_DIR$/mypolicy/mypolicy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/readmessage/readmessage.iml" filepath="$PROJECT_DIR$/readmessage/readmessage.iml" />
+      <module fileurl="file://$PROJECT_DIR$/readphonestate/readphonestate.iml" filepath="$PROJECT_DIR$/readphonestate/readphonestate.iml" />
+      <module fileurl="file://$PROJECT_DIR$/servicetest/servicetest.iml" filepath="$PROJECT_DIR$/servicetest/servicetest.iml" />
+    </modules>
+  </component>
+</project>
+

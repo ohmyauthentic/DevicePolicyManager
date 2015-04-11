@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">GetGpsPoint</string>
+    <string name="LocateURL">http://192.168.1.121:8080/sae/index.php/Form/addPoint</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+</resources>
