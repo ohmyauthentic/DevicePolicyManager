@@ -7,6 +7,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.location.Location;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.os.IBinder;
 import android.telephony.SmsManager;
 import android.util.Log;
@@ -22,6 +24,7 @@ public class BaiduMapService extends Service {
     public static final String INTENAL_ACTION_BAIDU = "sun.phone.baidu";
     private CodeReceiver receiver;
     private boolean ALLOW_SEND_SMS =  false;
+    private MediaPlayer mp;
     PendingIntent paIntent;
     SmsManager smsManager;
     String sender = null;
@@ -68,10 +71,31 @@ public class BaiduMapService extends Service {
                 if(mLocationClient!=null){
                     mLocationClient.stop();
                 }
+            }else if(code.contains("Aleter")){
+                ControlAleter(code);
             };
         }
     }
 
+    public void ControlAleter(String code){
+        if(mp!=null&&mp.isPlaying()&&code.contains("Stop")){
+            mp.stop();
+        }else if(mp==null){
+            mp = MediaPlayer.create(getApplicationContext(), R.raw.aleter);
+            if(code.contains("loop")){
+                mp.setLooping(true);
+            }
+            AudioManager audio = (AudioManager)getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
+            int maxAudio = audio.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+            audio.setStreamVolume(AudioManager.STREAM_MUSIC, maxAudio , 0 );
+            mp.start();
+        }else if(mp!=null&&!mp.isLooping()){
+            if(code.contains("loop")){
+                mp.setLooping(true);
+            }
+            mp.start();
+        }
+    }
     @Override
     public void onCreate() {
         super.onCreate();

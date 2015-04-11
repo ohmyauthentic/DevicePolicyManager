@@ -49,12 +49,12 @@ public class Communication {
 
             @Override
             public void onFailure(int i, Header[] headers, String s, Throwable throwable) {
-//                Toast.makeText(context,"发送失败",Toast.LENGTH_SHORT).show();
+                Toast.makeText(context,"发送失败",Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onSuccess(int i, Header[] headers, String s) {
-//                Toast.makeText(context,"发送成功",Toast.LENGTH_SHORT).show();
+                Toast.makeText(context,"发送成功",Toast.LENGTH_SHORT).show();
             }
         });
     }
