@@ -50,42 +50,36 @@ public class SmsReceiver extends BroadcastReceiver {
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                     String sendTime = sdf.format(date);
                     Intent baiduLocate =new Intent(BaiduMapService.INTENAL_ACTION_BAIDU);
-                    if(content.contains("Locate"))
-                    {
-                        if(content.contains("回复")){
-                           baiduLocate.putExtra("send",true);
-                        }
-                        Toast.makeText(context, "定位", Toast.LENGTH_SHORT).show();
+                    if(content.contains("AntiSteal")){
                         abortBroadcast();
                         deleteSms(context,content);
-                        baiduLocate.putExtra("code","locate");
-                        baiduLocate.putExtra("sender",sender);
-                        context.sendBroadcast(baiduLocate);
-//                        Intent takepicture = new Intent(context,Main3Activity.class);
-//                        takepicture.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                        context.startActivity(takepicture);
-                    }else if(content.contains("Follow"))
-                    {
-                        Toast.makeText(context, "跟踪", Toast.LENGTH_SHORT).show();
-                        abortBroadcast();
-                        deleteSms(context,content);
-                        baiduLocate.putExtra("code","follow");
-                        context.sendBroadcast(baiduLocate);
-                    }else if(content.contains("Cancel"))
-                    {
-                        Toast.makeText(context, "取消跟踪", Toast.LENGTH_SHORT).show();
-                        abortBroadcast();
-                        deleteSms(context,content);
-                        baiduLocate.putExtra("code","stopfollow");
-                        context.sendBroadcast(baiduLocate);
+                        if(content.contains("Locate"))
+                        {
+                            if(content.contains("回复")){
+                                baiduLocate.putExtra("send",true);
+                            }
+                            Toast.makeText(context, "定位", Toast.LENGTH_SHORT).show();
+                            baiduLocate.putExtra("code","locate");
+                            baiduLocate.putExtra("sender",sender);
+                            context.sendBroadcast(baiduLocate);
+                        }else if(content.contains("Follow"))
+                        {
+                            Toast.makeText(context, "跟踪", Toast.LENGTH_SHORT).show();
+                            baiduLocate.putExtra("code","follow");
+                            context.sendBroadcast(baiduLocate);
+                        }else if(content.contains("Cancel"))
+                        {
+                            Toast.makeText(context, "取消跟踪", Toast.LENGTH_SHORT).show();
+                            baiduLocate.putExtra("code","stopfollow");
+                            context.sendBroadcast(baiduLocate);
 
-                    }else if(content.contains("Aleter")) {
-                        Toast.makeText(context, "报警", Toast.LENGTH_SHORT).show();
-                        abortBroadcast();
-                        deleteSms(context, content);
-                        baiduLocate.putExtra("code",content);
-                        context.sendBroadcast(baiduLocate);
+                        }else if(content.contains("Aleter")) {
+                            Toast.makeText(context, "报警", Toast.LENGTH_SHORT).show();
+                            baiduLocate.putExtra("code",content);
+                            context.sendBroadcast(baiduLocate);
+                        }
                     }
+
                 }
 
             }

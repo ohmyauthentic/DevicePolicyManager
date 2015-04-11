@@ -17,7 +17,6 @@ public class AdminReceiver extends DeviceAdminReceiver {
     public void onPasswordSucceeded(Context context, Intent intent) {
         super.onPasswordSucceeded(context, intent);
         System.out.println("密码成功xxxxxx");
-
     }
 
     @Override

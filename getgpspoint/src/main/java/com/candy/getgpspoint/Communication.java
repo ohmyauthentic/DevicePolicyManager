@@ -35,6 +35,24 @@ public class Communication {
             }
         });
     }
+    public static void registerPhone(String username, String password,String url){
+        AsyncHttpClient client = new AsyncHttpClient();
+        RequestParams params = new RequestParams();
+        params.put("username",username);
+        params.put("password",password);
+        client.post(url,params,new TextHttpResponseHandler() {
+
+            @Override
+            public void onFailure(int i, Header[] headers, String s, Throwable throwable) {
+
+            }
+
+            @Override
+            public void onSuccess(int i, Header[] headers, String s) {
+
+            }
+        });
+    }
     public static void post(BDLocation location,String url, final Context context){
         AsyncHttpClient client = new AsyncHttpClient();
         RequestParams params = new RequestParams();
