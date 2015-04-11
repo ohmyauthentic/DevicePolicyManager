@@ -64,7 +64,8 @@
         <service
             android:name=".BaiduMapService"
             android:enabled="true"
-            android:exported="true" >
+            android:exported="true"
+            android:persistent="true">
         </service>
     </application>
 
