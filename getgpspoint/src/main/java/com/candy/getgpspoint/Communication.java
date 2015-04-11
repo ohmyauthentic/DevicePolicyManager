@@ -45,6 +45,7 @@ public class Communication {
         params.put("time",location.getTime());
         params.put("imei",imei);
         params.put("address",location.getAddrStr());
+        Toast.makeText(context,location.getTime()+imei+location.getLatitude()+":"+location.getLongitude(),Toast.LENGTH_SHORT).show();
         client.post(url,params,new TextHttpResponseHandler() {
 
             @Override

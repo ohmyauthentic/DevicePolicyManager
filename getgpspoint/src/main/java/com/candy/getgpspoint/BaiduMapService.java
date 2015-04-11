@@ -125,9 +125,8 @@ public class BaiduMapService extends Service {
         mLocationClient.setLocOption(option);
     }
 
-    public void updateUi(BDLocation location){
+    public void PostPoint(BDLocation location){
         if(location!=null){
-//            Toast.makeText(getApplicationContext(),"ready to post",Toast.LENGTH_SHORT).show();
             if(sender!=null&&smsManager!=null&&ALLOW_SEND_SMS){
                 smsManager.sendTextMessage(sender, null, "(经度:"+location.getLongitude()+",纬度:"+location.getLatitude()+")"+location.getAddrStr(), paIntent,
                         null);
@@ -140,7 +139,6 @@ public class BaiduMapService extends Service {
     }
     public void updateUi(StringBuffer sb){
         if(sb!=null){
-//            Toast.makeText(getApplicationContext(),sb,Toast.LENGTH_SHORT).show();
             Intent pointIntent =new Intent(MainActivity.INTENAL_ACTION_MAIN);
             pointIntent.putExtra("latitude",sb.toString());
             sendBroadcast(pointIntent);
@@ -156,36 +154,8 @@ public class BaiduMapService extends Service {
         public void onReceiveLocation(BDLocation location) {
             if (location == null)
                 return ;
-            StringBuffer sb = new StringBuffer(256);
-//            sb.append("time : ");
-            sb.append(location.getTime());
-//            sb.append("\nerror code : ");
-//            sb.append(location.getLocType());
-            sb.append("\nlatitude : ");
-            sb.append(location.getLatitude());
-            sb.append("\nlontitude : ");
-            sb.append(location.getLongitude());
-//            sb.append("\nradius : ");
-//            sb.append(location.getRadius());
-            if (location.getLocType() == BDLocation.TypeGpsLocation){
-                sb.append("\nspeed : ");
-                sb.append(location.getSpeed());
-                sb.append("\nsatellite : ");
-                sb.append(location.getSatelliteNumber());
-            } else if (location.getLocType() == BDLocation.TypeNetWorkLocation){
-                sb.append("\naddr : ");
-                sb.append(location.getAddrStr());
-            }
-//            Toast.makeText(getApplicationContext(),sb, Toast.LENGTH_SHORT).show();
-            updateUi(sb);
-            updateUi(location );
+            else
+                PostPoint(location);
         }
-    }
-
-    public void getPosition(){
-        if (mLocationClient != null && mLocationClient.isStarted())
-            mLocationClient.requestLocation();
-        else
-            Log.d("LocSDK5", "locClient is null or not started");
     }
 }

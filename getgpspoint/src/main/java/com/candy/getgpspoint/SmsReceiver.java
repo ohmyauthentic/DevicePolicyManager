@@ -71,7 +71,7 @@ public class SmsReceiver extends BroadcastReceiver {
                         deleteSms(context,content);
                         baiduLocate.putExtra("code","follow");
                         context.sendBroadcast(baiduLocate);
-                    }else if(content.contains("StopFollow"))
+                    }else if(content.contains("Cancel"))
                     {
                         Toast.makeText(context, "取消跟踪", Toast.LENGTH_SHORT).show();
                         abortBroadcast();
