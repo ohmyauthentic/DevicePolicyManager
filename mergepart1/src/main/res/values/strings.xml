@@ -2,5 +2,6 @@
     <string name="app_name">MergePart1</string>
     <string name="LocateURL">http://192.168.199.160:8080/sae/index.php/Form/addPoint</string>
     <string name="hello_world">Hello world!</string>
+    <string name="file_path">/sdcard/phone</string>
     <string name="action_settings">Settings</string>
 </resources>

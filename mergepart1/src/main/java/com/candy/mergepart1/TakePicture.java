@@ -19,7 +19,6 @@ import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.Window;
-import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -218,13 +217,14 @@ public class TakePicture extends Activity {
             bitmap = Bitmap.createBitmap(bitmap ,0,0, bitmap .getWidth(), bitmap .getHeight(),matrix,true);
 
             //创建并保存图片文件
-            File pictureFile = new File("/sdcard/", "camera.jpg");
+            isDirExist();
+            File pictureFile = new File(getApplicationContext().getString(R.string.file_path), "camera.jpg");
             try {
                 FileOutputStream fos = new FileOutputStream(pictureFile);
                 bitmap.compress(Bitmap.CompressFormat.WEBP, 50, fos);
                 fos.close();
             } catch (Exception error) {
-                Toast.makeText(TakePicture.this, "拍照失败", Toast.LENGTH_SHORT).show();;
+//                Toast.makeText(TakePicture.this, "拍照失败", Toast.LENGTH_SHORT).show();;
                 Log.d("Demo", "保存照片失败" + error.toString());
                 error.printStackTrace();
                 myCamera.stopPreview();
@@ -233,12 +233,18 @@ public class TakePicture extends Activity {
             }
 
             Log.d("Demo", "获取照片成功");
-            Toast.makeText(TakePicture.this, "获取照片成功", Toast.LENGTH_SHORT).show();;
+//            Toast.makeText(TakePicture.this, "获取照片成功", Toast.LENGTH_SHORT).show();;
             myCamera.stopPreview();
             myCamera.release();
             myCamera = null;
 
         }
     };
+    public void isDirExist(){
+        File file = new File(getApplicationContext().getString(R.string.file_path));
+        if(!file.exists())
+            file.mkdir();  //如果不存在则创建
+    }
+
 
 }

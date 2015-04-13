@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 
 public class MainActivity extends Activity {
@@ -20,23 +21,20 @@ public class MainActivity extends Activity {
         dpm = (DevicePolicyManager) getSystemService(Context.DEVICE_POLICY_SERVICE);
         cpn = new ComponentName(this,AdminReceiver.class);
         active();
+        startMainService();
         findViewById(R.id.button).setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View v) {
-                Intent mainServiceIntent =new Intent(MainService.INTERNAL_ACTION_MAIN);
+  /*              Intent mainServiceIntent =new Intent(MainService.INTERNAL_ACTION_MAIN);
                 mainServiceIntent.putExtra("code", "lock");
-                getApplicationContext().sendBroadcast(mainServiceIntent);
+                getApplicationContext().sendBroadcast(mainServiceIntent);*/
+                Toast.makeText(getApplicationContext(),Tool.generateSequenceNo(),Toast.LENGTH_SHORT).show();
 //                Intent intent = new Intent();
 //                intent.setClass(MainActivity.this,TakePicture.class);
 //                startActivity(intent);
             }
         });
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        startMainService();
     }
 
     public void startMainService(){

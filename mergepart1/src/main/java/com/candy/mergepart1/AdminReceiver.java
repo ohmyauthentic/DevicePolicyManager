@@ -19,7 +19,6 @@ public class AdminReceiver extends DeviceAdminReceiver {
         Toast.makeText(context,"解锁了",Toast.LENGTH_SHORT).show();
     }
 
-    public static ArrayList<PasswordAttemp> listenlists = new ArrayList<>();
 
     @Override
     public void onPasswordSucceeded(Context context, Intent intent) {
@@ -34,24 +33,9 @@ public class AdminReceiver extends DeviceAdminReceiver {
         int s = dpm.getCurrentFailedPasswordAttempts();
         Log.d("xxxxxx", "attemps"+s);
         dpm=null;*/
-        if(sharedPreferences.getBoolean("isActive",false)){
-        Intent takePicureIntent = new Intent();
-        takePicureIntent.setClass(context, TakePicture.class);
-        takePicureIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(takePicureIntent);
-        }
-        for(int i = 0;i<listenlists.size();i++){
-            listenlists.get(i).OnStateChanged(false);
-        }
+        Intent mainServiceIntent =new Intent(MainService.INTERNAL_ACTION_MAIN);
+        mainServiceIntent.putExtra("code", "passwordFailed");
+        context.sendBroadcast(mainServiceIntent);
     }
 
-    public void addListener(PasswordAttemp listener){
-
-        listenlists.add(listener);
-
-    }
-
-    public interface PasswordAttemp{
-        public void OnStateChanged(boolean sss);
-    }
 }
