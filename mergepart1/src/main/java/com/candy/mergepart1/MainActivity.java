@@ -5,27 +5,57 @@ import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.telephony.TelephonyManager;
 import android.view.View;
 
 
 public class MainActivity extends Activity {
     private DevicePolicyManager dpm;
     private ComponentName cpn;
+    private Intent MainServiceIntent;
+    private SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         dpm = (DevicePolicyManager) getSystemService(Context.DEVICE_POLICY_SERVICE);
         cpn = new ComponentName(this,AdminReceiver.class);
-        active();
+//        active();
+//        startBaiduService();
+//        startMainService();
+        getPhoneState();
         findViewById(R.id.button).setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View v) {
-                dpm.lockNow();
+//                dpm.lockNow();
+                Intent mainServiceIntent =new Intent(MainService.INTERNAL_ACTION_MAIN);
+                mainServiceIntent.putExtra("code", "lock");
+                getApplicationContext().sendBroadcast(mainServiceIntent);
             }
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        startMainService();
+    }
+
+    public void startMainService(){
+        MainServiceIntent = new Intent(getApplicationContext(), MainService.class);
+        MainServiceIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startService(MainServiceIntent);
+    }
+
+    public void getPhoneState(){
+        sharedPreferences = getSharedPreferences("phoneState", Context.MODE_PRIVATE);
+        TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+        sharedPreferences.edit().putString("imei",tm.getDeviceId()).commit();
+        sharedPreferences.edit().putString("imsi",tm.getSimSerialNumber()).commit();
+        sharedPreferences.edit().putString("phoneNum",tm.getLine1Number()).commit();
     }
 
     public void active(){

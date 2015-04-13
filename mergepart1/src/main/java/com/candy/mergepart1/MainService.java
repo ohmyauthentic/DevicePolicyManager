@@ -61,8 +61,8 @@ public class MainService extends Service {
         IntentFilter filter = new IntentFilter(INTERNAL_ACTION_MAIN);
         receiver = new CodeReceiver();
         registerReceiver(receiver,filter);
-        active();//激活设备管理器
-        getPhoneState();//获取手机状态信息
+        //active();//激活设备管理器
+        //getPhoneState();//获取手机状态信息
     }
     public void active(){
         Toast.makeText(getApplicationContext(),"active", Toast.LENGTH_SHORT).show();
