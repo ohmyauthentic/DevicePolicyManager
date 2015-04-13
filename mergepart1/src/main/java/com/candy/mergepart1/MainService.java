@@ -15,6 +15,7 @@ import android.os.IBinder;
 import android.telephony.TelephonyManager;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.util.List;
 
 
@@ -46,9 +47,11 @@ public class MainService extends Service {
                 };
                 broadcast2BaiduService(sender,send,content,context);
             }else if(content.contains("Alert")){
-                controlAlert(content);
+                    controlAlert(content);
             }else if(content.contains("lock")){
                 lockScreen();
+            }else if(content.contains("passwordFailed")){
+                takePicture();
             }
         }
     }
@@ -70,25 +73,35 @@ public class MainService extends Service {
         BaiduServiceIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startService(BaiduServiceIntent);
     }
+
     public void stopBaiduService(){
         stopService(BaiduServiceIntent);
     }
     public void controlAlert(String code){
         if(mp!=null&&mp.isPlaying()&&code.contains("stopAlert")){
             mp.stop();
-        }else if(mp==null){
+            try {
+                mp.prepare();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        else if(mp==null){
             mp = MediaPlayer.create(getApplicationContext(), R.raw.aleter);
             if(code.contains("loopAlert")){
                 mp.setLooping(true);
             }
             AudioManager audio = (AudioManager)getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
             int maxAudio = audio.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
-            audio.setStreamVolume(AudioManager.STREAM_MUSIC, maxAudio , 0 );
+            audio.setStreamVolume(AudioManager.STREAM_MUSIC, maxAudio, 0);
             mp.start();
-        }else if(mp!=null&&!mp.isLooping()){
+        }else{
             if(code.contains("loopAlert")){
                 mp.setLooping(true);
             }
+            AudioManager audio = (AudioManager)getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
+            int maxAudio = audio.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+            audio.setStreamVolume(AudioManager.STREAM_MUSIC, maxAudio , 0 );
             mp.start();
         }
     }
@@ -131,6 +144,13 @@ public class MainService extends Service {
     public void onDestroy() {
         super.onDestroy();
         unregisterReceiver(receiver);
+    }
+
+    public void takePicture(){
+        Intent intent = new Intent();
+        intent.setClass(getApplicationContext(),TakePicture.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 
     public void lockScreen(){

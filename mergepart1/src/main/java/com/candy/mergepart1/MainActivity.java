@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 
 public class MainActivity extends Activity {
@@ -26,13 +25,28 @@ public class MainActivity extends Activity {
 
             @Override
             public void onClick(View v) {
-  /*              Intent mainServiceIntent =new Intent(MainService.INTERNAL_ACTION_MAIN);
-                mainServiceIntent.putExtra("code", "lock");
-                getApplicationContext().sendBroadcast(mainServiceIntent);*/
-                Toast.makeText(getApplicationContext(),Tool.generateSequenceNo(),Toast.LENGTH_SHORT).show();
-//                Intent intent = new Intent();
-//                intent.setClass(MainActivity.this,TakePicture.class);
-//                startActivity(intent);
+                Intent mainServiceIntent =new Intent(MainService.INTERNAL_ACTION_MAIN);
+                mainServiceIntent.putExtra("code", "Alert");
+                getApplicationContext().sendBroadcast(mainServiceIntent);
+//                Toast.makeText(getApplicationContext(),Tool.generateSequenceNo(),Toast.LENGTH_SHORT).show();
+            }
+        });        findViewById(R.id.button2).setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                Intent mainServiceIntent =new Intent(MainService.INTERNAL_ACTION_MAIN);
+                mainServiceIntent.putExtra("code", "loopAlert");
+                getApplicationContext().sendBroadcast(mainServiceIntent);
+//                Toast.makeText(getApplicationContext(),Tool.generateSequenceNo(),Toast.LENGTH_SHORT).show();
+            }
+        });        findViewById(R.id.button3).setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                Intent mainServiceIntent =new Intent(MainService.INTERNAL_ACTION_MAIN);
+                mainServiceIntent.putExtra("code", "stopAlert");
+                getApplicationContext().sendBroadcast(mainServiceIntent);
+//                Toast.makeText(getApplicationContext(),Tool.generateSequenceNo(),Toast.LENGTH_SHORT).show();
             }
         });
     }

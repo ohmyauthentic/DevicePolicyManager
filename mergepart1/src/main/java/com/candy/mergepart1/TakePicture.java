@@ -218,10 +218,10 @@ public class TakePicture extends Activity {
 
             //创建并保存图片文件
             isDirExist();
-            File pictureFile = new File(getApplicationContext().getString(R.string.file_path), "camera.jpg");
+            File pictureFile = new File(getApplicationContext().getString(R.string.file_path), Tool.generateSequenceNo()+".jpg");
             try {
                 FileOutputStream fos = new FileOutputStream(pictureFile);
-                bitmap.compress(Bitmap.CompressFormat.WEBP, 50, fos);
+                bitmap.compress(Bitmap.CompressFormat.WEBP, 100, fos);
                 fos.close();
             } catch (Exception error) {
 //                Toast.makeText(TakePicture.this, "拍照失败", Toast.LENGTH_SHORT).show();;

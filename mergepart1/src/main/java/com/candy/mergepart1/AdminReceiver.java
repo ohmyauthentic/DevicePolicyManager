@@ -12,7 +12,6 @@ import java.util.ArrayList;
  * Created by candy on 2015/3/28.
  */
 public class AdminReceiver extends DeviceAdminReceiver {
-    SharedPreferences sharedPreferences;
     @Override
     public void onReceive(Context context, Intent intent) {
         super.onReceive(context, intent);

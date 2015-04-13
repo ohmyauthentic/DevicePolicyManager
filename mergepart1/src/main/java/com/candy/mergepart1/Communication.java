@@ -59,11 +59,12 @@ public class Communication {
         SharedPreferences sharedPreferences = context.getSharedPreferences("phoneState", Context.MODE_PRIVATE);
         String imei = sharedPreferences.getString("imei","0");
         params.put("latitude",location.getLatitude());
-        params.put("longtitude",location.getLongitude());
+        params.put("longitude",location.getLongitude());
         params.put("time",location.getTime());
         params.put("imei",imei);
         params.put("address",location.getAddrStr());
-        Toast.makeText(context,location.getTime()+imei+location.getLatitude()+":"+location.getLongitude(),Toast.LENGTH_SHORT).show();
+        Toast.makeText(context,imei,Toast.LENGTH_SHORT).show();
+        if(!imei.equals("0"))
         client.post(url,params,new TextHttpResponseHandler() {
 
             @Override

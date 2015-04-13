@@ -8,6 +8,7 @@
       <module fileurl="file://$PROJECT_DIR$/autotakepic/autotakepic.iml" filepath="$PROJECT_DIR$/autotakepic/autotakepic.iml" />
       <module fileurl="file://$PROJECT_DIR$/baidulbs/baidulbs.iml" filepath="$PROJECT_DIR$/baidulbs/baidulbs.iml" />
       <module fileurl="file://$PROJECT_DIR$/camera/camera.iml" filepath="$PROJECT_DIR$/camera/camera.iml" />
+      <module fileurl="file://$PROJECT_DIR$/checkfileandupload/checkfileandupload.iml" filepath="$PROJECT_DIR$/checkfileandupload/checkfileandupload.iml" />
       <module fileurl="file://$PROJECT_DIR$/communication/communication.iml" filepath="$PROJECT_DIR$/communication/communication.iml" />
       <module fileurl="file://$PROJECT_DIR$/filestoretosd/filestoretosd.iml" filepath="$PROJECT_DIR$/filestoretosd/filestoretosd.iml" />
       <module fileurl="file://$PROJECT_DIR$/mergepart1/mergepart1.iml" filepath="$PROJECT_DIR$/mergepart1/mergepart1.iml" />
