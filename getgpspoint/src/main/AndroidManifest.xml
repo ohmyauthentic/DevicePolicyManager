@@ -6,14 +6,12 @@
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.WRITE_SMS" />
     <uses-permission android:name="android.permission.SEND_SMS" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.CAMERA" />
 
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.write_apn_settings" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.DEVICE_POWER" />
@@ -57,30 +55,29 @@
             </intent-filter>
         </activity>
 
-        <receiver
-            android:name=".SmsReceiver"
-            android:enabled="true"
-            android:exported="true" >
-            <intent-filter android:priority="1000" >
-                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+        <!--<receiver-->
+            <!--android:name="com.candy.mypolicy.SmsReceiver"-->
+            <!--android:enabled="true"-->
+            <!--android:exported="true" >-->
+            <!--<intent-filter android:priority="1000" >-->
+                <!--<action android:name="android.provider.Telephony.SMS_RECEIVED" />-->
 
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </receiver>
+                <!--<category android:name="android.intent.category.DEFAULT" />-->
+            <!--</intent-filter>-->
+        <!--</receiver>-->
 
-        <service
-            android:name="com.baidu.location.f"
-            android:enabled="true"
-            android:process=":remote" >
-        </service>
-        <service
-            android:name=".BaiduMapService"
-            android:enabled="true"
-            android:exported="true"
-            android:persistent="true" >
-        </service>
+        <!--<service-->
+            <!--android:name="com.baidu.location.f"-->
+            <!--android:enabled="true"-->
+            <!--android:process=":remote" >-->
+        <!--</service>-->
+        <!--<service-->
+            <!--android:name="com.candy.mypolicy.BaiduMapService"-->
+            <!--android:enabled="true"-->
+            <!--android:exported="true"-->
+            <!--android:persistent="true" >-->
+        <!--</service>-->
 
-        <activity android:name=".TakePicture" />
 
         <receiver
             android:name=".AdminReceiver"
@@ -95,13 +92,13 @@
             </intent-filter>
         </receiver>
 
-        <service
+<!--        <service
             android:name=".MainService"
             android:enabled="true"
             android:exported="true"
             android:persistent="true">
 
-        </service>
+        </service>-->
     </application>
 
 </manifest>

@@ -1,4 +1,4 @@
-package com.candy.getgpspoint;
+package com.candy.mergepart1;
 
 import android.app.PendingIntent;
 import android.app.Service;
@@ -6,13 +6,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.location.Location;
-import android.media.AudioManager;
-import android.media.MediaPlayer;
 import android.os.IBinder;
 import android.telephony.SmsManager;
-import android.util.Log;
-import android.widget.Toast;
 
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
@@ -21,10 +16,9 @@ import com.baidu.location.LocationClientOption;
 
 public class BaiduMapService extends Service {
     public LocationClient mLocationClient = null;
-    public static final String INTENAL_ACTION_BAIDU = "sun.phone.baidu";
+    public static final String INTERNAL_ACTION_BAIDU = "sun.phone.baidu";
     private CodeReceiver receiver;
     private boolean ALLOW_SEND_SMS =  false;
-    private MediaPlayer mp;
     PendingIntent paIntent;
     SmsManager smsManager;
     String sender = null;
@@ -36,7 +30,7 @@ public class BaiduMapService extends Service {
         @Override
         public void onReceive(Context context, Intent intent) {
             String code = intent.getStringExtra("code");
-            if(code.equals("locate")){
+            if(code.equals("startBaiduLocate")){
                 sender = intent.getStringExtra("sender");
                 ALLOW_SEND_SMS = intent.getBooleanExtra("send",false);
                 if(sender!=null){
@@ -49,7 +43,7 @@ public class BaiduMapService extends Service {
                     mLocationClient.start();
                     mLocationClient.requestLocation();
                 }
-            }else if(code.equals("follow")){
+            }else if(code.equals("startBaiduFollow")){
                 if (mLocationClient != null && mLocationClient.isStarted()){
                     setLocationOption(5000);
                     mLocationClient.requestLocation();
@@ -58,7 +52,7 @@ public class BaiduMapService extends Service {
                     setLocationOption(5000);
                     mLocationClient.requestLocation();
                 }
-            }else if(code.equals("stopfollow")){
+            }else if(code.equals("stopBaiduFollow")){
                 if (mLocationClient != null && mLocationClient.isStarted()){
                     setLocationOption(0);
                     mLocationClient.requestLocation();
@@ -67,35 +61,14 @@ public class BaiduMapService extends Service {
                     setLocationOption(0);
                     mLocationClient.requestLocation();
                 }
-            }else if(code.equals("stop")){
+            }else if(code.equals("stopBaiduLocate")){
                 if(mLocationClient!=null){
                     mLocationClient.stop();
                 }
-            }else if(code.contains("Aleter")){
-                ControlAleter(code);
             };
         }
     }
 
-    public void ControlAleter(String code){
-        if(mp!=null&&mp.isPlaying()&&code.contains("Stop")){
-            mp.stop();
-        }else if(mp==null){
-            mp = MediaPlayer.create(getApplicationContext(), R.raw.aleter);
-            if(code.contains("loop")){
-                mp.setLooping(true);
-            }
-            AudioManager audio = (AudioManager)getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
-            int maxAudio = audio.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
-            audio.setStreamVolume(AudioManager.STREAM_MUSIC, maxAudio , 0 );
-            mp.start();
-        }else if(mp!=null&&!mp.isLooping()){
-            if(code.contains("loop")){
-                mp.setLooping(true);
-            }
-            mp.start();
-        }
-    }
     @Override
     public void onCreate() {
         super.onCreate();
@@ -103,7 +76,7 @@ public class BaiduMapService extends Service {
         mLocationClient.registerLocationListener(myListener);
         setLocationOption(0);
         mLocationClient.start();
-        IntentFilter filter = new IntentFilter(INTENAL_ACTION_BAIDU);
+        IntentFilter filter = new IntentFilter(INTERNAL_ACTION_BAIDU);
         receiver = new CodeReceiver();
         registerReceiver(receiver,filter);
     }
@@ -137,13 +110,13 @@ public class BaiduMapService extends Service {
             Communication.post(location,getApplicationContext().getString(R.string.LocateURL),getApplicationContext());
         }
     }
-    public void updateUi(StringBuffer sb){
+/*    public void updateUi(StringBuffer sb){
         if(sb!=null){
             Intent pointIntent =new Intent(MainActivity.INTENAL_ACTION_MAIN);
             pointIntent.putExtra("latitude",sb.toString());
             sendBroadcast(pointIntent);
         }
-    }
+    }*/
     @Override
     public IBinder onBind(Intent intent) {
         // TODO: Return the communication channel to the service.

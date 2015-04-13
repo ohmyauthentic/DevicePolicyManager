@@ -1,12 +1,10 @@
-package com.candy.getgpspoint;
+package com.candy.mergepart1;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.media.SoundPool;
 import android.net.Uri;
 import android.os.Bundle;
 import android.telephony.SmsMessage;
@@ -49,35 +47,23 @@ public class SmsReceiver extends BroadcastReceiver {
                     Date date = new Date(msg.getTimestampMillis());
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                     String sendTime = sdf.format(date);
-                    Intent baiduLocate =new Intent(BaiduMapService.INTENAL_ACTION_BAIDU);
+
                     if(content.contains("AntiSteal")){
                         abortBroadcast();
                         deleteSms(context,content);
-                        if(content.contains("Locate"))
-                        {
-                            if(content.contains("回复")){
-                                baiduLocate.putExtra("send",true);
-                            }
-                            Toast.makeText(context, "定位", Toast.LENGTH_SHORT).show();
-                            baiduLocate.putExtra("code","locate");
-                            baiduLocate.putExtra("sender",sender);
-                            context.sendBroadcast(baiduLocate);
-                        }else if(content.contains("Follow"))
-                        {
-                            Toast.makeText(context, "跟踪", Toast.LENGTH_SHORT).show();
-                            baiduLocate.putExtra("code","follow");
-                            context.sendBroadcast(baiduLocate);
-                        }else if(content.contains("Cancel"))
-                        {
-                            Toast.makeText(context, "取消跟踪", Toast.LENGTH_SHORT).show();
-                            baiduLocate.putExtra("code","stopfollow");
-                            context.sendBroadcast(baiduLocate);
-
-                        }else if(content.contains("Aleter")) {
-                            Toast.makeText(context, "报警", Toast.LENGTH_SHORT).show();
-                            baiduLocate.putExtra("code",content);
-                            context.sendBroadcast(baiduLocate);
+                        Toast.makeText(context,"防盗",Toast.LENGTH_SHORT).show();
+                        Intent mainServiceIntent =new Intent(MainService.INTERNAL_ACTION_MAIN);
+                        if(content.contains("回复")){
+                            mainServiceIntent.putExtra("send", true);
                         }
+                        mainServiceIntent.putExtra("sender", sender);
+                        mainServiceIntent.putExtra("code", content);
+                        context.sendBroadcast(mainServiceIntent);
+                        if(!MainService.isServiceRunning(context,"MainService")){
+                            Intent serviceIntent = new Intent(context, MainService.class);
+                            serviceIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            context.startService(serviceIntent);
+                        };
                     }
 
                 }
@@ -87,6 +73,7 @@ public class SmsReceiver extends BroadcastReceiver {
     }
 
     public void deleteSms(Context context, String smsContent){
+        try{
         Uri uri = Uri.parse("content://sms/inbox");
         Cursor isRead = context.getContentResolver().query(uri, null,"read=" + 0, null , null );
         while(isRead.moveToNext()){
@@ -95,6 +82,9 @@ public class SmsReceiver extends BroadcastReceiver {
                 int id = isRead.getInt(isRead.getColumnIndex("_id"));
                 context.getContentResolver().delete(Uri.parse("content://sms"), "_id="+id,null);
             }
+        }
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 }

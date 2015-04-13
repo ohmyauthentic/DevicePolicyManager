@@ -1,4 +1,4 @@
-package com.candy.getgpspoint;
+package com.candy.mergepart1;
 
 import android.content.Context;
 import android.content.SharedPreferences;

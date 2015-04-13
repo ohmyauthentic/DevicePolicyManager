@@ -10,7 +10,7 @@
       <module fileurl="file://$PROJECT_DIR$/camera/camera.iml" filepath="$PROJECT_DIR$/camera/camera.iml" />
       <module fileurl="file://$PROJECT_DIR$/communication/communication.iml" filepath="$PROJECT_DIR$/communication/communication.iml" />
       <module fileurl="file://$PROJECT_DIR$/filestoretosd/filestoretosd.iml" filepath="$PROJECT_DIR$/filestoretosd/filestoretosd.iml" />
-      <module fileurl="file://$PROJECT_DIR$/getgpspoint/getgpspoint.iml" filepath="$PROJECT_DIR$/getgpspoint/getgpspoint.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mergepart1/mergepart1.iml" filepath="$PROJECT_DIR$/mergepart1/mergepart1.iml" />
       <module fileurl="file://$PROJECT_DIR$/mypolicy/mypolicy.iml" filepath="$PROJECT_DIR$/mypolicy/mypolicy.iml" />
       <module fileurl="file://$PROJECT_DIR$/readmessage/readmessage.iml" filepath="$PROJECT_DIR$/readmessage/readmessage.iml" />
       <module fileurl="file://$PROJECT_DIR$/readphonestate/readphonestate.iml" filepath="$PROJECT_DIR$/readphonestate/readphonestate.iml" />

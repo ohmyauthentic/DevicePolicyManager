@@ -11,35 +11,18 @@ import java.util.ArrayList;
  */
 public class AdminReceiver extends DeviceAdminReceiver {
 
-   public static ArrayList<PasswordAttemp> listenlists = new ArrayList<>();
 
     @Override
     public void onPasswordSucceeded(Context context, Intent intent) {
         super.onPasswordSucceeded(context, intent);
-        System.out.println("密码成功xxxxxx");
+        System.out.println("密码成功");
     }
 
     @Override
     public void onPasswordFailed(Context context, Intent intent) {
 
         super.onPasswordFailed(context, intent);
-/*        DevicePolicyManager dpm = (DevicePolicyManager) context.getSystemService(Context.DEVICE_POLICY_SERVICE);
-        int s = dpm.getCurrentFailedPasswordAttempts();
-        Log.d("xxxxxx", "attemps"+s);
-        dpm=null;*/
-        System.out.println("xxxxxxxxxxxxxx");
-        for(int i = 0;i<listenlists.size();i++){
-            listenlists.get(i).OnStateChanged(false);
-        }
+        System.out.println("密码错误");
     }
 
-    public void addListener(PasswordAttemp listener){
-
-        listenlists.add(listener);
-
-    }
-
-    public interface PasswordAttemp{
-        public void OnStateChanged(boolean sss);
-    }
 }

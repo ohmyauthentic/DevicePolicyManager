@@ -1,1 +1,1 @@
-include ':app', ':Application', ':mypolicy', ':camera', ':autotakepic', ':filestoretosd', ':servicetest', ':communication', ':getgpspoint', ':readmessage', ':readphonestate', ':baidulbs'
+include ':app', ':Application', ':mypolicy', ':camera', ':autotakepic', ':filestoretosd', ':servicetest', ':communication', ':readmessage', ':readphonestate', ':baidulbs', ':mergepart1'
