@@ -55,6 +55,7 @@ public class MainService extends Service {
     }
     @Override
     public void onCreate() {
+        Toast.makeText(getApplicationContext(),"启动Service",Toast.LENGTH_SHORT).show();
         super.onCreate();
         dpm = (DevicePolicyManager) getSystemService(Context.DEVICE_POLICY_SERVICE);
         cpn = new ComponentName(this,AdminReceiver.class);
@@ -62,7 +63,7 @@ public class MainService extends Service {
         receiver = new CodeReceiver();
         registerReceiver(receiver,filter);
         //active();//激活设备管理器
-        //getPhoneState();//获取手机状态信息
+        getPhoneState();//获取手机状态信息
     }
     public void active(){
         Toast.makeText(getApplicationContext(),"active", Toast.LENGTH_SHORT).show();
