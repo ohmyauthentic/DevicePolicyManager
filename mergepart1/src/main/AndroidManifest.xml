@@ -67,6 +67,7 @@
             android:exported="true"
             android:persistent="true" >
         </service>
+        <activity android:name=".TakePicture"/>
         <receiver
             android:name=".AdminReceiver"
             android:label="device_admin"

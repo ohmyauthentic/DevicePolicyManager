@@ -3,6 +3,7 @@ package com.candy.mergepart1;
 import android.app.admin.DeviceAdminReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ import java.util.ArrayList;
  * Created by candy on 2015/3/28.
  */
 public class AdminReceiver extends DeviceAdminReceiver {
+    SharedPreferences sharedPreferences;
     @Override
     public void onReceive(Context context, Intent intent) {
         super.onReceive(context, intent);
@@ -32,7 +34,12 @@ public class AdminReceiver extends DeviceAdminReceiver {
         int s = dpm.getCurrentFailedPasswordAttempts();
         Log.d("xxxxxx", "attemps"+s);
         dpm=null;*/
-        System.out.println("xxxxxxxxxxxxxx");
+        if(sharedPreferences.getBoolean("isActive",false)){
+        Intent takePicureIntent = new Intent();
+        takePicureIntent.setClass(context, TakePicture.class);
+        takePicureIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(takePicureIntent);
+        }
         for(int i = 0;i<listenlists.size();i++){
             listenlists.get(i).OnStateChanged(false);
         }

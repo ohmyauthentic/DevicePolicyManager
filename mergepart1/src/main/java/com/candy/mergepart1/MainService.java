@@ -22,7 +22,6 @@ public class MainService extends Service {
     public static final String INTERNAL_ACTION_MAIN = "sun.phone.main";
     private CodeReceiver receiver;
     private DevicePolicyManager dpm;
-    private ComponentName cpn;
     private Intent BaiduServiceIntent;
     private MediaPlayer mp;
     private SharedPreferences sharedPreferences;
@@ -58,26 +57,13 @@ public class MainService extends Service {
         Toast.makeText(getApplicationContext(),"启动Service",Toast.LENGTH_SHORT).show();
         super.onCreate();
         dpm = (DevicePolicyManager) getSystemService(Context.DEVICE_POLICY_SERVICE);
-        cpn = new ComponentName(this,AdminReceiver.class);
         IntentFilter filter = new IntentFilter(INTERNAL_ACTION_MAIN);
         receiver = new CodeReceiver();
         registerReceiver(receiver,filter);
         //active();//激活设备管理器
         getPhoneState();//获取手机状态信息
     }
-    public void active(){
-        Toast.makeText(getApplicationContext(),"active", Toast.LENGTH_SHORT).show();
-        if(dpm.isAdminActive(cpn)) {}else{
-            Toast.makeText(getApplicationContext(),"active2", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN);
-            //权限列表
-            intent.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN, cpn);
-            //描述(additional explanation)
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION, "------ 其他描述 ------");
-            startActivity(intent);
-        }
-    }
+
 
     public void startBaiduService(){
         BaiduServiceIntent = new Intent(getApplicationContext(), BaiduMapService.class);

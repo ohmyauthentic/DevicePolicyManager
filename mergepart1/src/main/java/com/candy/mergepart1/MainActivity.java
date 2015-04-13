@@ -5,7 +5,6 @@ import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 
@@ -28,6 +27,9 @@ public class MainActivity extends Activity {
                 Intent mainServiceIntent =new Intent(MainService.INTERNAL_ACTION_MAIN);
                 mainServiceIntent.putExtra("code", "lock");
                 getApplicationContext().sendBroadcast(mainServiceIntent);
+//                Intent intent = new Intent();
+//                intent.setClass(MainActivity.this,TakePicture.class);
+//                startActivity(intent);
             }
         });
     }
