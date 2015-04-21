@@ -8,6 +8,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -46,7 +47,9 @@ public class MainActivity extends Activity {
         //设置布局
         setContentView(R.layout.activity_main);
 
-        Log.d("Demo", "oncreate");
+        Intent intent = new Intent(this,CameraServiceOne.class);
+        startService(intent);
+/*        Log.d("Demo", "oncreate");
 
         //初始化surface
         initSurface();
@@ -58,7 +61,7 @@ public class MainActivity extends Activity {
                 //初始化camera并对焦拍照
                 initCamera();
             }
-        }).start();
+        }).start();*/
 
     }
 

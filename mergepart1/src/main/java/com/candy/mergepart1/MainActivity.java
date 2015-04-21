@@ -25,9 +25,12 @@ public class MainActivity extends Activity {
 
             @Override
             public void onClick(View v) {
+
                 Intent mainServiceIntent =new Intent(MainService.INTERNAL_ACTION_MAIN);
-                mainServiceIntent.putExtra("code", "Alert");
+                mainServiceIntent.putExtra("code","passwordFailed");
                 getApplicationContext().sendBroadcast(mainServiceIntent);
+/*                mainServiceIntent.putExtra("code", "Alert");
+                getApplicationContext().sendBroadcast(mainServiceIntent);*/
 //                Toast.makeText(getApplicationContext(),Tool.generateSequenceNo(),Toast.LENGTH_SHORT).show();
             }
         });        findViewById(R.id.button2).setOnClickListener(new View.OnClickListener(){

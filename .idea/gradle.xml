@@ -17,11 +17,14 @@
             <option value="$PROJECT_DIR$/checkfileandupload" />
             <option value="$PROJECT_DIR$/communication" />
             <option value="$PROJECT_DIR$/filestoretosd" />
+            <option value="$PROJECT_DIR$/gui" />
             <option value="$PROJECT_DIR$/mergepart1" />
+            <option value="$PROJECT_DIR$/minatest" />
             <option value="$PROJECT_DIR$/mypolicy" />
             <option value="$PROJECT_DIR$/readmessage" />
             <option value="$PROJECT_DIR$/readphonestate" />
             <option value="$PROJECT_DIR$/servicetest" />
+            <option value="$PROJECT_DIR$/setting" />
           </set>
         </option>
       </GradleProjectSettings>

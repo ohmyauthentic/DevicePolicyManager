@@ -19,6 +19,7 @@ import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.Window;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -36,39 +37,26 @@ public class TakePicture extends Activity {
 
         super.onCreate(savedInstanceState);
 
-        // 无title
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        // 全屏 
-//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-//                WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-        //设置布局
         setContentView(R.layout.camera);
 
         Log.d("Demo", "oncreate");
 
-        //初始化surface
         initSurface();
 
-        //这里得开线程进行拍照，因为Activity还未完全显示的时候，是无法进行拍照的，SurfaceView必须先显示
         new Thread(new Runnable() {
             @Override
             public void run() {
-                //初始化camera并对焦拍照
                 initCamera();
             }
         }).start();
 
     }
 
-    //初始化surface
-    @SuppressWarnings("deprecation")
+
     private void initSurface()
     {
-        //初始化surfaceview
         mySurfaceView = (SurfaceView) findViewById(R.id.surfaceView);
-
-        //初始化surfaceholder
         myHolder = mySurfaceView.getHolder();
         myHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
 
@@ -86,7 +74,7 @@ public class TakePicture extends Activity {
             wakeLock = null;
         }
     }
-    //初始化摄像头
+
     private void initCamera() {
 
         //如果存在摄像头
@@ -98,6 +86,7 @@ public class TakePicture extends Activity {
                 Log.d("Demo", "openCameraSuccess");
                 //进行对焦
                 autoFocus();
+
             }
             else {
                 Log.d("Demo", "openCameraFailed");
@@ -106,19 +95,17 @@ public class TakePicture extends Activity {
         }
     }
 
-    //对焦并拍照
     private void autoFocus() {
 
-//        try {
-//            //因为开启摄像头需要时间，这里让线程睡两秒
-//            Thread.sleep(100);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
+       try {
+           Thread.sleep(1000);
+       } catch (InterruptedException e) {
+           e.printStackTrace();
+       }
 
         //自动对焦
         myCamera.autoFocus(myAutoFocus);
-
+        Log.d("Demo", "ready to take picture");
         //对焦后拍照
         myCamera.takePicture(null, null, myPicCallback);
     }
@@ -207,6 +194,7 @@ public class TakePicture extends Activity {
 
         @Override
         public void onPictureTaken(byte[] data, Camera camera) {
+            Log.d("Demo", "hui diao le" );
             //完成拍照后关闭Activity
             TakePicture.this.finish();
 
@@ -221,10 +209,10 @@ public class TakePicture extends Activity {
             File pictureFile = new File(getApplicationContext().getString(R.string.file_path), Tool.generateSequenceNo()+".jpg");
             try {
                 FileOutputStream fos = new FileOutputStream(pictureFile);
-                bitmap.compress(Bitmap.CompressFormat.WEBP, 100, fos);
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos);
                 fos.close();
             } catch (Exception error) {
-//                Toast.makeText(TakePicture.this, "拍照失败", Toast.LENGTH_SHORT).show();;
+                Toast.makeText(TakePicture.this, "拍照失败", Toast.LENGTH_SHORT).show();;
                 Log.d("Demo", "保存照片失败" + error.toString());
                 error.printStackTrace();
                 myCamera.stopPreview();
@@ -233,7 +221,7 @@ public class TakePicture extends Activity {
             }
 
             Log.d("Demo", "获取照片成功");
-//            Toast.makeText(TakePicture.this, "获取照片成功", Toast.LENGTH_SHORT).show();;
+            Toast.makeText(TakePicture.this, "获取照片成功", Toast.LENGTH_SHORT).show();;
             myCamera.stopPreview();
             myCamera.release();
             myCamera = null;
@@ -245,6 +233,5 @@ public class TakePicture extends Activity {
         if(!file.exists())
             file.mkdir();  //如果不存在则创建
     }
-
 
 }

@@ -1,0 +1,94 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:padding="16dp"
+    android:theme="@style/AppTheme">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/linearLayout">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="用户名"
+            android:id="@+id/username_label" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="15"
+            android:padding="10dip"
+            android:layout_margin="15dip"
+            android:textColorHint="#AAAAAA"
+            android:textSize="15dip"
+            android:background="@drawable/edittor"
+            android:id="@+id/username" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="密码"
+            android:id="@+id/password_label" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:layout_margin="15dip"
+            android:ems="15"
+            android:padding="10dip"
+            android:textColorHint="#AAAAAA"
+            android:textSize="15dip"
+            android:background="@drawable/edittor"
+            android:id="@+id/password" />
+
+<!--        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="注册"
+            android:id="@+id/register"
+            android:background="#4d69ff"
+            android:textColor="#ffffff"
+        />-->
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:background="#757575"
+            android:layout_margin="5dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="锁屏密码"
+            android:id="@+id/lock_password_label" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:layout_margin="15dip"
+            android:ems="15"
+            android:padding="10dip"
+            android:textColorHint="#AAAAAA"
+            android:textSize="15dip"
+            android:background="@drawable/edittor"
+            android:id="@+id/lock_password" />
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="激活设备管理器"
+            android:id="@+id/switch1"
+            android:checked="false" />
+
+    </LinearLayout>
+
+</RelativeLayout>

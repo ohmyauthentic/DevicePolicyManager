@@ -11,11 +11,14 @@
       <module fileurl="file://$PROJECT_DIR$/checkfileandupload/checkfileandupload.iml" filepath="$PROJECT_DIR$/checkfileandupload/checkfileandupload.iml" />
       <module fileurl="file://$PROJECT_DIR$/communication/communication.iml" filepath="$PROJECT_DIR$/communication/communication.iml" />
       <module fileurl="file://$PROJECT_DIR$/filestoretosd/filestoretosd.iml" filepath="$PROJECT_DIR$/filestoretosd/filestoretosd.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gui/gui.iml" filepath="$PROJECT_DIR$/gui/gui.iml" />
       <module fileurl="file://$PROJECT_DIR$/mergepart1/mergepart1.iml" filepath="$PROJECT_DIR$/mergepart1/mergepart1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/minatest/minatest.iml" filepath="$PROJECT_DIR$/minatest/minatest.iml" />
       <module fileurl="file://$PROJECT_DIR$/mypolicy/mypolicy.iml" filepath="$PROJECT_DIR$/mypolicy/mypolicy.iml" />
       <module fileurl="file://$PROJECT_DIR$/readmessage/readmessage.iml" filepath="$PROJECT_DIR$/readmessage/readmessage.iml" />
       <module fileurl="file://$PROJECT_DIR$/readphonestate/readphonestate.iml" filepath="$PROJECT_DIR$/readphonestate/readphonestate.iml" />
       <module fileurl="file://$PROJECT_DIR$/servicetest/servicetest.iml" filepath="$PROJECT_DIR$/servicetest/servicetest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/setting/setting.iml" filepath="$PROJECT_DIR$/setting/setting.iml" />
     </modules>
   </component>
 </project>

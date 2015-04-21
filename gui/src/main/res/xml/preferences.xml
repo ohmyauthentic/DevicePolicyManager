@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="Settings">
+    <PreferenceCategory android:title="userinfomation" >
+    <EditTextPreference android:key="username"
+        android:title="设置帐户名:"
+        android:summary="设置帐户名:"
+        android:dialogTitle="设置帐户名:" />
+    <EditTextPreference android:key="password"
+        android:title="设置密码"
+        android:summary="设置密码"
+        android:dialogTitle="设置密码:" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="lockpasswprd" >
+        <EditTextPreference android:key="password"
+            android:title="设置密码"
+            android:summary="设置密码"
+            android:dialogTitle="设置密码:" />
+    </PreferenceCategory>
+</PreferenceScreen>
